@@ -38,3 +38,32 @@ export function itemsFetchData(url) {
             .catch(() => dispatch(itemsHasErrored(true)));
     };
 }
+
+export function itemsRemoveItem(index) {
+  return {
+    type: 'ITEMS_REMOVE_ITEM',
+    index
+  };
+}
+
+export function dataFetchDataSuccess(data) {
+  return {
+    type: 'DATA_FETCH_DATA_SUCCESS',
+    data
+  };
+}
+
+export function dataFetchData(url) {
+  return (dispatch) => {
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then((response) => response.json())
+      .then((data) => dispatch(dataFetchDataSuccess(data)))
+      .catch(() => dispatch(dataHasErrored(true)));
+  }
+}

@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../actions/items';
+// dont need .js extension to include files
+// import { itemsFetchData } from '../api/providerApi';
+import { itemsFetchData, itemsRemoveItem, dataFetchData } from '../actions/items';
 
 class ItemList extends Component {
     componentDidMount() {
         this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items');
+        this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json');
     }
 
     render() {
@@ -13,24 +16,45 @@ class ItemList extends Component {
         }
 
         if (this.props.isLoading) {
-            return <p>Loading…</p>;
+            return (
+              <div>
+                <p>Loading…</p>
+              </div>
+            );
         }
 
         return (
-            <ul>
-                {this.props.items.map((item) => (
-                    <li key={item.id}>
-                        {item.label}
-                    </li>
-                ))}
-            </ul>
+            <div>
+              <ul>
+                  {this.props.items.map((item, index) => (
+                      <li key={item.id}>
+                          {item.label}
+                          <button onClick={() => this.props.removeItem(index)}>Remove</button>
+                      </li>
+                  ))}
+              </ul>
+              <button onClick={() => this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items')}>Repopulate</button>
+                <button onClick={() => this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json')}>Get Challenge Data</button>
+                <p>{this.props.data.length} bacon</p>
+                  <ul>
+                    {this.props.data.providers.map((dataPoint, index) => (
+                      <li key={index + 1000}>
+                        {dataPoint.companyName}
+                      </li>
+                    ))}
+
+                  </ul>
+            </div>
         );
     }
 }
 
 ItemList.propTypes = {
     fetchData: PropTypes.func.isRequired,
+    removeItem: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
+    data: PropTypes.object.isRequired,
+    fetchJSONData: PropTypes.func.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
 };
@@ -38,6 +62,7 @@ ItemList.propTypes = {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
+        data: state.data,
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsIsLoading
     };
@@ -45,7 +70,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchData: (url) => dispatch(itemsFetchData(url))
+        fetchData: (url) => dispatch(itemsFetchData(url)),
+        removeItem: (index) => dispatch(itemsRemoveItem(index)),
+        fetchJSONData: (url) => dispatch(dataFetchData(url))
     };
 };
 
