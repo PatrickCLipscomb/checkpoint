@@ -1,16 +1,28 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-// dont need .js extension to include files
-// import { itemsFetchData } from '../api/providerApi';
+import { push } from 'react-router-redux'
 import { itemsFetchData, itemsRemoveItem, dataFetchData } from '../actions/items';
 
 class ItemList extends Component {
     componentDidMount() {
         this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items');
-        this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json');
+
     }
 
+
     render() {
+        let dataCheck = null;
+        if (this.props.data.providers) {
+          dataCheck = this.props.data.providers.map((dataPoint, index) => (
+            <li key={index + 1000}>
+              {dataPoint.companyName}
+            </li>
+          ))
+        } else {
+          dataCheck = <li>No Data yet</li>
+        }
+
+
         if (this.props.hasErrored) {
             return <p>Sorry! There was an error loading the items</p>;
         }
@@ -23,8 +35,11 @@ class ItemList extends Component {
             );
         }
 
+
+
         return (
             <div>
+              <button onClick={() => this.props.aboutPage()}>Go To About Page</button>
               <ul>
                   {this.props.items.map((item, index) => (
                       <li key={item.id}>
@@ -36,20 +51,18 @@ class ItemList extends Component {
               <button onClick={() => this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items')}>Repopulate</button>
                 <button onClick={() => this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json')}>Get Challenge Data</button>
                 <p>{this.props.data.length} bacon</p>
-                  <ul>
-                    {this.props.data.providers.map((dataPoint, index) => (
-                      <li key={index + 1000}>
-                        {dataPoint.companyName}
-                      </li>
-                    ))}
 
+                  <ul>
+                    {dataCheck}
                   </ul>
+
             </div>
         );
     }
 }
 
 ItemList.propTypes = {
+    aboutPage: PropTypes.func.isRequired,
     fetchData: PropTypes.func.isRequired,
     removeItem: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
@@ -72,7 +85,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         fetchData: (url) => dispatch(itemsFetchData(url)),
         removeItem: (index) => dispatch(itemsRemoveItem(index)),
-        fetchJSONData: (url) => dispatch(dataFetchData(url))
+        fetchJSONData: (url) => dispatch(dataFetchData(url)),
+        aboutPage: () => push('/about')
     };
 };
 

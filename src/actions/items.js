@@ -12,6 +12,13 @@ export function itemsIsLoading(bool) {
     };
 }
 
+export function itemsRemoveItem(index) {
+  return {
+    type: 'ITEMS_REMOVE_ITEM',
+    index
+  };
+}
+
 export function itemsFetchDataSuccess(items) {
     return {
         type: 'ITEMS_FETCH_DATA_SUCCESS',
@@ -39,12 +46,6 @@ export function itemsFetchData(url) {
     };
 }
 
-export function itemsRemoveItem(index) {
-  return {
-    type: 'ITEMS_REMOVE_ITEM',
-    index
-  };
-}
 
 export function dataFetchDataSuccess(data) {
   return {
