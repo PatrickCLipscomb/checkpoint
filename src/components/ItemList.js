@@ -51,10 +51,20 @@ class ItemList extends Component {
               <button onClick={() => this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items')}>Repopulate</button>
                 <button onClick={() => this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json')}>Get Challenge Data</button>
                 <p>{this.props.data.length} bacon</p>
-
+                  <div className="data-row">
+                    <ul>
+                      {this.props.providers.map((provider, index) => (
+                        <li key={index + 2056}>
+                          {index} - {provider.yearStarted} - {provider.companyName} - {provider.type}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <ul>
                     {dataCheck}
                   </ul>
+
+
 
             </div>
         );
@@ -67,6 +77,7 @@ ItemList.propTypes = {
     removeItem: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
+    providers: PropTypes.array.isRequired,
     fetchJSONData: PropTypes.func.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
@@ -76,6 +87,7 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         data: state.data,
+        providers: state.providers,
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsIsLoading
     };

@@ -1,3 +1,8 @@
 p, li {
   color: green;
 }
+.data-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

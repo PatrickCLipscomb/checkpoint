@@ -43,3 +43,13 @@ export function data(state = {}, action) {
       return state;
   }
 }
+
+export function providers(state = [], action) {
+  switch (action.type) {
+    case 'DATA_FETCH_DATA_SUCCESS_FILTERED':
+      return action.providers;
+
+    default:
+      return state;
+  }
+}
