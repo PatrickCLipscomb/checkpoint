@@ -75,6 +75,61 @@ function standardFilter(data) {
   return providers
 }
 
+function filterByProvider(data, type) {
+  var providersByType = {
+    ocean: [],
+    air: [],
+    customBroker: []
+  }
+  for (var i = 0; i < providers.length; i++) {
+    let providerType = providers[i].type;
+    let providerCopy = providers[i];
+    providersByType[providerType].push(providerCopy);
+  }
+}
+
+function providerTypeDispatcher(data) {
+  var getProviders = standardFilter(data);
+  // var ocean = [];
+  var air = [];
+  // var customBroker = [];
+  for (var i = 0; i < getProviders.length; i++) {
+    air.push(getProviders[i]);
+    // if (getProviders[i].type === 'ocean') {
+    //   ocean.push(getProviders[i]);
+    // } else if (getProviders[i].type === 'air') {
+    //   air.push(getProviders[i]);
+    // } else if (getProviders[i].type === 'customBroker') {
+    //   customBroker.push(getProviders[i]);
+    // }
+  }
+  dispatch(setAirProviders(air));
+  // dispatch(setOceanProviders(ocean));
+  // dispatch(setCustomBrokerProviders(customBroker));
+}
+
+function setAirProviders(airy) {
+  const air = standardFilter(airy)
+  return {
+    type: 'SET_AIR_PROVIDERS',
+    air
+  }
+}
+
+function setOceanProviders(ocean) {
+  return {
+    type: 'SET_OCEAN_PROVIDERS',
+    action: ocean
+  }
+}
+
+function setCustomBrokerProviders(customBroker) {
+  return {
+    type: 'SET_CUSTOM_BROKER_PROVIDERS',
+    action: customBroker
+  }
+}
+
 export function dataFetchData(url) {
   return (dispatch) => {
     fetch(url)
@@ -88,6 +143,8 @@ export function dataFetchData(url) {
       .then((data) => {
         dispatch(dataFetchDataSuccess(data));
         dispatch(dataFetchDataSuccessFiltered(data));
+        // providerTypeDispatcher(data);
+        // dispatch(setAirProviders(data));
       })
       .catch(() => dispatch(dataHasErrored(true)));
   }

@@ -53,3 +53,33 @@ export function providers(state = [], action) {
       return state;
   }
 }
+
+export function oceanProviders(state = [], action) {
+  switch (action.type) {
+    case 'SET_OCEAN_PROVIDERS':
+      return action.ocean;
+
+    default:
+      return state;
+  }
+}
+
+export function airProviders(state = [], action) {
+  switch (action.type) {
+    case 'SET_AIR_PROVIDERS':
+      return action.air;
+
+    default:
+      return state;
+  }
+}
+
+export function customBrokerProviders(state = [], action) {
+  switch (action.type) {
+    case 'SET_CUSTOM_BROKER_PROVIDERS':
+      return action.customBroker;
+
+    default:
+      return state;
+  }
+}

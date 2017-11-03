@@ -50,7 +50,7 @@ class ItemList extends Component {
               </ul>
               <button onClick={() => this.props.fetchData('http://599167402df2f40011e4929a.mockapi.io/items')}>Repopulate</button>
                 <button onClick={() => this.props.fetchJSONData('https://raw.githubusercontent.com/Shipstr/react-coding-challenge/master/feed/sample.json')}>Get Challenge Data</button>
-                <p>{this.props.data.length} bacon</p>
+                <p>{this.props.data.length} bacon {this.props.providers.length}</p>
                   <div className="data-row">
                     <ul>
                       {this.props.providers.map((provider, index) => (
@@ -59,6 +59,7 @@ class ItemList extends Component {
                         </li>
                       ))}
                     </ul>
+                    
                   </div>
                   <ul>
                     {dataCheck}
@@ -78,6 +79,9 @@ ItemList.propTypes = {
     items: PropTypes.array.isRequired,
     data: PropTypes.object.isRequired,
     providers: PropTypes.array.isRequired,
+    ocean: PropTypes.array.isRequired,
+    air: PropTypes.array.isRequired,
+    customBroker: PropTypes.array.isRequired,
     fetchJSONData: PropTypes.func.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isLoading: PropTypes.bool.isRequired
@@ -87,6 +91,9 @@ const mapStateToProps = (state) => {
     return {
         items: state.items,
         data: state.data,
+        ocean: state.ocean,
+        air: state.air,
+        customBroker: state.customBroker,
         providers: state.providers,
         hasErrored: state.itemsHasErrored,
         isLoading: state.itemsIsLoading
