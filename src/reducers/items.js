@@ -83,3 +83,13 @@ export function customBrokerProviders(state = [], action) {
       return state;
   }
 }
+
+export function providerNumber(state = 0, action) {
+  switch (action.type) {
+    case 'SET_PROVIDER_NUMBER':
+      return action.providerNumber;
+
+    default:
+      return state;
+  }
+}

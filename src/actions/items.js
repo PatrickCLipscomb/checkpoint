@@ -71,7 +71,7 @@ function standardFilter(data) {
     var textB = b.companyName.toUpperCase();
     return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
   });
-  providers = providers.slice(0, 21);
+  // providers = providers.slice(0, 21);
   return providers
 }
 
@@ -127,6 +127,13 @@ function setCustomBrokerProviders(customBroker) {
   return {
     type: 'SET_CUSTOM_BROKER_PROVIDERS',
     action: customBroker
+  }
+}
+
+export function setProviderNumber(providerNumber) {
+  return {
+    type: 'SET_PROVIDER_NUMBER',
+    action: providerNumber
   }
 }
 

@@ -56,6 +56,17 @@ body {
   color: white;
   text-decoration: none;
 }
+.title-bar {
+  border-bottom: grey 1px solid;
+  height: 70px;
+}
+.title-bar > h2 {
+  text-align: left;
+  max-width: 853px;
+  margin: 0 auto;
+  line-height: 70px;
+  font-weight: 100;
+}
 /*HEADER*/
 
 /*FOOTER*/
@@ -100,9 +111,33 @@ body {
 
 /*BODY GENERIC*/
 .app-body > main {
-  min-height: 464px;
+  min-height: 400px;
 }
 .app-body > header {
   display: none;
 }
 /*BODY GENERIC*/
+
+/*PROVIDER OPTION*/
+.provider-option-container {
+  display: flex;
+  max-width: 853px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-top: 25px;
+  height: 400px;
+}
+.provider-option {
+  width: 270px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid grey;
+}
+.provider-option img {
+  width: 100px;
+}
+/*PROVIDER OPTION*/

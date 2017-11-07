@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux'
+import { Link } from 'react-router-dom'
 import { itemsFetchData, itemsRemoveItem, dataFetchData } from '../actions/items';
 
 class ItemList extends Component {
@@ -39,6 +40,11 @@ class ItemList extends Component {
 
         return (
             <div>
+              <header>
+                <Link to="/home">Home Page</Link>
+                <Link to="/items">Item List</Link>
+                <Link to="/about">About</Link>
+              </header>
               <button onClick={() => this.props.aboutPage()}>Go To About Page</button>
               <ul>
                   {this.props.items.map((item, index) => (
@@ -59,7 +65,7 @@ class ItemList extends Component {
                         </li>
                       ))}
                     </ul>
-                    
+
                   </div>
                   <ul>
                     {dataCheck}
