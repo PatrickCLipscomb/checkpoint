@@ -4,24 +4,33 @@ import { setProviderNumber } from '../actions/items';
 
 class AirProviders extends Component {
 
-  filterByProviderType(type) {
+  filterByProviderType() {
+    const type = this.props.location.pathname.slice(1);
+    var formattedProviders = [];
     var providers = this.props.providers.filter((provider) => (
       provider.type === type
     ));
     providers = providers.slice(0, 21);
-    this.props.providerNumberSetter(providers.length)
-    return providers
+    let safety = providers;
+    for (var i = 0; i < (providers.length / 4); i++) {
+      var holder = [];
+      for (var k = 0; k < 4; k++) {
+        holder.push(providers[k]);
+      }
+      formattedProviders.push(holder);
+    }
+    return safety;
   }
 
   render() {
     return(
       <div className="provider-list-container">
-      <h2>{this.props.providerNumber}</h2>
-      <ul>
-      {this.filterByProviderType('air').map((provider, index) => (
-        <li>{provider.companyName} - {provider.type} - {index}</li>
+      <h2>{this.filterByProviderType().length} Air Providers</h2>
+      <div className="provider-grid">
+      {this.filterByProviderType().map((provider, index) => (
+        <div className={"provider-item " + (index % 4 === 0 ? 'first ' : '') + ((index + 1) % 4 === 0 ? 'last ' : '') + (index > 7 ? 'hidden' : '')}><div className="provider-item-inner"><img src={provider.images['Company Logo'].url}></img> <p>{provider.companyName}</p></div></div>
       ))}
-      </ul>
+      </div>
       </div>
     )
   }
@@ -29,21 +38,15 @@ class AirProviders extends Component {
 
 AirProviders.PropTypes = {
   providers: PropTypes.array.isRequired,
-  providerNumber: PropTypes.num.isRequired,
-  providerNumberSetter: PropTypes.func.isRequired
+  location: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => {
   return {
-    providers: state.providers,
-    providerNumber: state.providerNumber
+    providers: state.providers
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    providerNumberSetter: (num) => dispatch(setProviderNumber(num))
-  }
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(AirProviders)
+
+export default connect(mapStateToProps)(AirProviders)

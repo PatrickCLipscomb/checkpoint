@@ -130,13 +130,6 @@ function setCustomBrokerProviders(customBroker) {
   }
 }
 
-export function setProviderNumber(providerNumber) {
-  return {
-    type: 'SET_PROVIDER_NUMBER',
-    action: providerNumber
-  }
-}
-
 export function dataFetchData(url) {
   return (dispatch) => {
     fetch(url)

@@ -16,6 +16,8 @@ class App extends Component {
         <TitleBar />
         <main>
           <Route exact path="/air" component={AirProviders} />
+          <Route exact path="/ocean" component={AirProviders} />
+          <Route exact path="/customBroker" component={AirProviders} />
           <Route exact path="/" component={ProviderOptions} />
           <Route exact path="/home" component={HomePage} />
           <Route exact path="/items" component={ItemList} />
