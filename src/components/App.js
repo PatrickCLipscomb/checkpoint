@@ -3,7 +3,6 @@ import { Route, Link } from 'react-router-dom'
 import ItemList from './ItemList'
 import about from './about'
 import HomePage from './HomePage'
-import TitleBar from './TitleBar'
 import Footer from './Footer'
 import AirProviders from './AirProviders'
 import ProviderOptions from './ProviderOptions'
@@ -13,7 +12,12 @@ class App extends Component {
   render() {
     return (
       <div className="app-body">
-        <TitleBar />
+        <div className="nav-bar">
+          <div className="header-content">
+            <Link to="/"><h1>DEMO</h1></Link>
+            <a href="#">Log In</a>
+          </div>
+        </div>
         <main>
           <Route exact path="/air" component={AirProviders} />
           <Route exact path="/ocean" component={AirProviders} />

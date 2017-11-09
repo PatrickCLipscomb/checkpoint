@@ -4,6 +4,7 @@ import { push } from 'react-router-redux'
 import { Link } from 'react-router-dom'
 import { itemsFetchData, itemsRemoveItem, dataFetchData } from '../actions/items';
 import ProviderOption from './ProviderOption'
+import TitleBar from './TitleBar'
 
 import air from '../images/air.svg'
 import ocean from '../images/ocean.svg'
@@ -17,10 +18,13 @@ class ProviderOptions extends Component {
 
   render() {
     return (
-      <div className="provider-option-container">
-        <Link to='/air' ><ProviderOption icon={air} optionTitle={'Air'} /></Link>
-        <Link to='/ocean' ><ProviderOption icon={ocean} optionTitle={'Ocean'} /></Link>
-        <Link to='/customBroker' ><ProviderOption icon={customs} optionTitle={'Customs Brokers'} /></Link>
+      <div>
+        <TitleBar title={'Popular Services'} />
+        <div className="provider-option-container">
+          <Link to='/air' ><ProviderOption icon={air} optionTitle={'Air'} /></Link>
+          <Link to='/ocean' ><ProviderOption icon={ocean} optionTitle={'Ocean'} /></Link>
+          <Link to='/customBroker' ><ProviderOption icon={customs} optionTitle={'Customs Brokers'} /></Link>
+        </div>
       </div>
 
     )

@@ -1,15 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default () => (
+export default (props) => (
   <div>
-    <div className="nav-bar">
-      <div className="header-content">
-        <h1>DEMO</h1>
-        <a href="#">Log In</a>
-      </div>
-    </div>
     <div className="title-bar">
-      <h2>Popular Services</h2>
+      <h2>{props.title}</h2>
     </div>
   </div>
 )

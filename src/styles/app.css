@@ -111,7 +111,7 @@ body {
 
 /*BODY GENERIC*/
 .app-body > main {
-  min-height: 400px;
+  /*min-height: 400px;*/
 }
 .app-body > header {
   display: none;
@@ -126,7 +126,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding-top: 25px;
-  height: 400px;
+  /*height: 400px;*/
 }
 .provider-option {
   width: 270px;
@@ -146,7 +146,7 @@ body {
 .provider-list-container {
   max-width: 853px;
   margin: 0 auto;
-  height: 500px;
+  /*height: 500px;*/
 }
 .provider-item {
   border: 1px solid grey;
@@ -185,5 +185,18 @@ body {
   margin-left: auto;
   margin-right: auto;
   min-height: 36px;
+}
+.provider-grid-control {
+  clear: both;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.provider-grid-control button {
+  padding: 9px 10px;
+  width: 200px;
+  border-radius: 35px;
+  font-size: 20px;
+  background-color: white;
 }
 /*PROVIDER PAGE*/
