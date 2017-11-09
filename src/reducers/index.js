@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import { items, itemsHasErrored, itemsIsLoading, data, providers, customBrokerProviders, airProviders, oceanProviders, providerNumber } from './items';
+import { items, itemsHasErrored, itemsIsLoading, data, providers, customBrokerProviders, airProviders, oceanProviders, providerNumber, dataIsLoading, dataHasErrored } from './items';
 
 export default combineReducers({
     routing: routerReducer,
@@ -12,5 +12,7 @@ export default combineReducers({
     items,
     itemsHasErrored,
     itemsIsLoading,
-    providerNumber
+    providerNumber,
+    dataIsLoading,
+    dataHasErrored
 });

@@ -126,7 +126,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   padding-top: 25px;
-  /*height: 400px;*/
+  margin-bottom: 80px;
 }
 .provider-option {
   width: 270px;
@@ -200,3 +200,19 @@ body {
   background-color: white;
 }
 /*PROVIDER PAGE*/
+
+/*MESSAGE SCREEN*/
+.message-screen {
+  height: 365px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.message-screen img {
+  max-width: 140px;
+}
+.message-screen h2 {
+  padding-top: 25px;
+}
+/*MESSAGE SCREEN*/

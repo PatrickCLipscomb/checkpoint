@@ -130,21 +130,25 @@ function setCustomBrokerProviders(customBroker) {
   }
 }
 
+export const dataIsLoading = (bool) => ({ type: 'DATA_IS_LOADING', isLoading: bool});
+export const dataHasErrored = (bool) => ({ type: 'DATA_HAS_ERRORED', hasErrored: bool});
+
 export function dataFetchData(url) {
   return (dispatch) => {
+    dispatch(dataIsLoading(true))
     fetch(url)
       .then((response) => {
         if (!response.ok) {
+          // dispatch(dataHasErrored(true));
           throw Error(response.statusText);
         }
+        dispatch(dataIsLoading(false))
         return response;
       })
       .then((response) => response.json())
       .then((data) => {
         dispatch(dataFetchDataSuccess(data));
         dispatch(dataFetchDataSuccessFiltered(data));
-        // providerTypeDispatcher(data);
-        // dispatch(setAirProviders(data));
       })
       .catch(() => dispatch(dataHasErrored(true)));
   }
