@@ -1,6 +1,6 @@
-# A Dummy's Guide to Redux and Thunk in React
+# Redux and Thunk in React Dashboard
 
-The demo app for my blog post. It is not an example of writing best-practice markup or React JavaScript, it's just the bare minimum to demonstrate how to use Redux and Redux Thunk.
+Small demo app to work with react redux and thunk.
 
 ## Prerequisites
 
@@ -17,7 +17,5 @@ The demo app for my blog post. It is not an example of writing best-practice mar
 ## Building
 
 - `npm run build` creates a production build by default.
-
-   To create a development build, set the `NODE_ENV` environment variable to `development` while running this command.
 
 - `npm run clean` will delete built resources.
